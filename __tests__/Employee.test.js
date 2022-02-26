@@ -14,5 +14,4 @@ test("create object employee", () => {
  }
  
  expect(isChar).toBe(true)
- 
 })
