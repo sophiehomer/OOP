@@ -107,7 +107,7 @@ const engineerPrompt = () => {
           if (nameInput) {
             return true;
           } else {
-            console.log("Please a name!");
+            console.log("Please enter a name!");
             return false;
           }
         }
@@ -115,7 +115,7 @@ const engineerPrompt = () => {
       {
         type: "input",
         name: "id",
-        message: "Enter engineer's ID",
+        message: "Enter the engineer's ID",
         validate: idInput => {
          if (idInput) {
             return true;
@@ -174,12 +174,12 @@ const engineerPrompt = () => {
         {
           type: "input",
           name: "id",
-          message: "Enter intern's ID",
+          message: "Enter the intern's ID",
           validate: idInput => {
            if (idInput) {
               return true;
             } else {
-              console.log("Please an ID!");
+              console.log("Please enter an ID!");
               return false;
             }
           }
@@ -200,7 +200,7 @@ const engineerPrompt = () => {
         {
           type: "input",
           name: "school",
-          message: "Enter intern's school",
+          message: "Enter the intern's school",
           validate: schoolInput => {
            if (schoolInput) {
               return true;
