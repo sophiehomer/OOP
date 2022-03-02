@@ -78,7 +78,7 @@ function prompt() {
   .then((answers) => {
     console.log(answers);
     if (answers.newEmployee === true) {
-      console.log("heyyyyy");
+      console.log("hello world");
     }
     if (answers.role === "Engineer") {
       engineerPrompt()
@@ -97,6 +97,8 @@ managerPrompt().then((manager) => {
   prompt()
   
 });
+
+
 
 /* --------------------------- Engineer Questions --------------------------- */
 function engineerPrompt() {
@@ -219,7 +221,13 @@ function internPrompt() {
         }
       },
     },
-  ]);
+  ])
+  .then((data) => {
+    //console.log(data)
+    employees.push(data);
+    console.log(employees);
+    prompt()
+  });
 }
 
 // internPrompt()
