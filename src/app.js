@@ -70,8 +70,6 @@ function prompt() {
     },
   ])
   .then((answers) => {
-    console.log("line 79", answers);
-
     if (answers.newEmployee === "Engineer") {
       engineerPrompt()
       
@@ -88,12 +86,10 @@ function prompt() {
 }
 
 managerPrompt().then((manager) => {
-  console.log(manager);
   employees.push(manager);
   prompt()
 
 });
-
 
 /* --------------------------- Engineer Questions --------------------------- */
 function engineerPrompt() {
@@ -153,7 +149,6 @@ function engineerPrompt() {
   ])
   .then((data) => {
     employees.push(data);
-    console.log(employees);
     prompt()
   });
 }
@@ -166,12 +161,12 @@ function internPrompt() {
     {
       type: "input",
       name: "name",
-      message: "Enter the name of the intern",
+      message: "Enter the intern's name",
       validate: (nameInput) => {
         if (nameInput) {
           return true;
         } else {
-          console.log("Please a name!");
+          console.log("Please enter a name!");
           return false;
         }
       },
@@ -218,7 +213,6 @@ function internPrompt() {
   ])
   .then((data) => {
     employees.push(data);
-    console.log(employees);
     prompt()
   });
 }
