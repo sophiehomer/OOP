@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generatedHTML = require("./generatedHTML");
+const generateHTML = require("./HTML-template");
 const employees = [];
 /* ---------------------------- Manager Questions --------------------------- */
 function managerPrompt() {
@@ -76,9 +76,13 @@ function prompt() {
     },
   ])
   .then((answers) => {
-    console.log(answers);
+    console.log("line 79", answers);
     if (answers.newEmployee === true) {
-      console.log("hello world");
+      console.log("create new employee");
+    }
+    if (answers.newEmployee === false) {
+      generateHTML(employees)
+      return;
     }
     if (answers.role === "Engineer") {
       engineerPrompt()
@@ -94,10 +98,10 @@ function prompt() {
 
 managerPrompt().then((manager) => {
   console.log(manager);
+  employees.push(manager);
   prompt()
-  
-});
 
+});
 
 
 /* --------------------------- Engineer Questions --------------------------- */
@@ -157,7 +161,6 @@ function engineerPrompt() {
     },
   ])
   .then((data) => {
-    //console.log(data)
     employees.push(data);
     console.log(employees);
     prompt()
@@ -223,7 +226,6 @@ function internPrompt() {
     },
   ])
   .then((data) => {
-    //console.log(data)
     employees.push(data);
     console.log(employees);
     prompt()
@@ -231,3 +233,6 @@ function internPrompt() {
 }
 
 // internPrompt()
+
+
+
