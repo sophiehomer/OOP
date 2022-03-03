@@ -63,34 +63,25 @@ function managerPrompt() {
 function prompt() {
   inquirer.prompt([
     {
-      type: "confirm",
+      type: "list",
       name: "newEmployee",
       message: "Would you like to add a new employee?",
-      default: true,
-    },
-    {
-      type: "list",
-      name: "role",
-      message: "Would you like to add an engineer or an intern?",
-      choices: ["Engineer", "Intern"],
+      choices: ["Engineer", "Intern", "No"]
     },
   ])
   .then((answers) => {
     console.log("line 79", answers);
-    if (answers.newEmployee === true) {
-      console.log("create new employee");
-    }
-    if (answers.newEmployee === false) {
-      generateHTML(employees)
-      return;
-    }
-    if (answers.role === "Engineer") {
+
+    if (answers.newEmployee === "Engineer") {
       engineerPrompt()
       
-    } else {
+    } 
+    if (answers.newEmployee === "Intern") {
       internPrompt();
     }
-  })
+    else  {
+      generateHTML(employees)
+  }})
   .catch(() => {
     console.log("error!!!");
   });
