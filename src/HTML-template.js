@@ -6,7 +6,7 @@ const employees = []
 
 /* ------------------------- Generate HTML ------------------------- */
 const generateHTML = (employees) => {
-  console.log(employees)
+  console.log(employees[0]) 
     // return `
     // <!DOCTYPE html> 
     // <html lang="en"> 
@@ -29,5 +29,9 @@ const generateHTML = (employees) => {
     // </html>
     // `;
   };
+
+for (let i = 0; i < array.name; i++ ) {
+  
+}
 
   module.exports = generateHTML

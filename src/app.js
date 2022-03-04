@@ -70,6 +70,7 @@ function prompt() {
     },
   ])
   .then((answers) => {
+
     if (answers.newEmployee === "Engineer") {
       engineerPrompt()
       
@@ -153,7 +154,6 @@ function engineerPrompt() {
   });
 }
 
-//engineerPrompt()
 
 /* ---------------------------- Intern Questions ---------------------------- */
 function internPrompt() {
@@ -217,7 +217,6 @@ function internPrompt() {
   });
 }
 
-// internPrompt()
 
 
 
