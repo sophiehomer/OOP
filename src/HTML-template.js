@@ -6,32 +6,29 @@ const employees = []
 
 /* ------------------------- Generate HTML ------------------------- */
 const generateHTML = (employees) => {
-  console.log(employees[0]) 
-    // return `
-    // <!DOCTYPE html> 
-    // <html lang="en"> 
-    // <head>
-    //   <meta charset="UTF-8">
-    //   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    //   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    //   <title>My Team</title>
-    // </head>
-  
-    // <body>
-    //   <header>
-    //   </header>
-    //   <main class="container">
-    //   <div>
-    //   ${employees.join}
-    //   </div>
-    //   </main
-    // </body>
-    // </html>
-    // `;
+  console.log(employees) 
+    return `
+        <div class="card shadow" style="width: 18rem">
+          <div class="card-header bg-primary">
+            <h2 class="card-title text-white">Employee</h2>
+            <h3 class="card-subtitle mb-2 text-white"><i class="fa-solid fa-glasses fa-sm is-white" aria-hidden="true"></i> Role</h3>
+          </div>
+          <div class="card-body bg-light">
+            <ul class="list-group pt-5 pb-5 pl-2 pr-2">
+              <li class="list-group-item">ID:45609</li>
+              <li class="list-group-item">Email: sophie@gmail.com</li>
+              <li class="list-group-item">Github: sophiehomer</li>
+            </ul>
+          </div>
+        </div>
+    `;
   };
 
-for (let i = 0; i < array.name; i++ ) {
+
+
   
-}
+// for (let i = 0; i < array.name; i++ ) {
+  
+// }
 
   module.exports = generateHTML
