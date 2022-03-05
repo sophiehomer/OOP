@@ -78,7 +78,7 @@ function prompt() {
     if (answers.newEmployee === "Intern") {
       internPrompt();
     }
-    else  {
+    if (answers.newEmployee === "No") {
       generateHTML(employees)
   }})
   .catch(() => {
