@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
-const generateHTML = require("./HTML-template");
+const writeToFile = require("./HTML-template");
 const employees = [];
 /* ---------------------------- Manager Questions --------------------------- */
 function managerPrompt() {
@@ -72,14 +72,15 @@ function prompt() {
   .then((answers) => {
 
     if (answers.newEmployee === "Engineer") {
-      engineerPrompt()
-      
+      engineerPrompt();
     } 
     if (answers.newEmployee === "Intern") {
       internPrompt();
     }
     if (answers.newEmployee === "No") {
-      generateHTML(employees)
+      console.log(employees)
+      writeToFile(employees);
+   
   }})
   .catch(() => {
     console.log("error!!!");
@@ -148,9 +149,9 @@ function engineerPrompt() {
       },
     },
   ])
-  .then((data) => {
-    employees.push(data);
-    prompt()
+  .then((engineer) => {
+    employees.push(engineer);
+   prompt()
   });
 }
 
@@ -211,12 +212,9 @@ function internPrompt() {
       },
     },
   ])
-  .then((data) => {
-    employees.push(data);
+  .then((intern) => {
+    employees.push(intern);
     prompt()
   });
 }
-
-
-
 

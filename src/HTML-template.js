@@ -5,7 +5,7 @@ const fs = require('fs');
 const employees = []
 /* ------------------------- Generate HTML ------------------------- */
 console.log("hit generate html file")
-const generateHTML = (employees) => {
+const generateHTML = (data) => {
   console.log("inside generate HTML function")
     return `
     <!DOCTYPE html>
@@ -23,25 +23,7 @@ const generateHTML = (employees) => {
             <h1 class="text-center">My Team</h1>
           </div>
         </header>
-    
-        <div class="container pt-5">
-          <div class="row">
-            <div class="card shadow" style="width: 18rem">
-              <div class="card-header bg-primary">
-                <h2 class="card-title text-white">${employees.name}</h2>
-                <h3 class="card-subtitle mb-2 text-white"><i class="fa-solid fa-glasses fa-sm is-white" aria-hidden="true"></i> Role</h3>
-              </div>
-              <div class="card-body bg-light">
-                <ul class="list-group pt-5 pb-5 pl-2 pr-2">
-                  <li class="list-group-item">ID: ${employees.id}</li>
-                  <li class="list-group-item">Email: ${employees.email}</li>
-                  <li class="list-group-item">Office Number: ${employees.officeNumber}</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-    
+       ${generateCard(data)}
         <script
           src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
           integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -63,11 +45,82 @@ const generateHTML = (employees) => {
         `;
       };
 
+    const generateCard = () => {
+     const newManager = new Manager(data.manager_name, data.manager_id, data.manager_email, data.manager_office_number);
+      return `
+      <div class="container pt-5">
+          <div class="row">
+            <div class="card shadow" style="width: 18rem">
+              <div class="card-header bg-primary">
+                <h2 class="card-title text-white">${newManager.getName()}</h2>
+                <h3 class="card-subtitle mb-2 text-white"><i class="fa-solid fa-glasses fa-sm is-white" aria-hidden="true"></i>${employees.role}</h3>
+              </div>
+              <div class="card-body bg-light">
+                <ul class="list-group pt-5 pb-5 pl-2 pr-2">
+                  <li class="list-group-item">ID: ${newManager.getid()}</li>
+                  <li class="list-group-item">Email: ${newManager.getemail()}</li>
+                  <li class="list-group-item">Office Number: ${newManager.getOfficeNumber()}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        `
+    }
+
+    // const newEngineer = new Engineer(data.engineer_name, data.engineer_id, data.engineer_email, data.engineer_github)
+
+    // `
+    //   <div class="container pt-5">
+    //       <div class="row">
+    //         <div class="card shadow" style="width: 18rem">
+    //           <div class="card-header bg-primary">
+    //             <h2 class="card-title text-white">${newEngineer.getName()}</h2>
+    //             <h3 class="card-subtitle mb-2 text-white"><i class="fa-solid fa-glasses fa-sm is-white" aria-hidden="true"></i>${employees.role}</h3>
+    //           </div>
+    //           <div class="card-body bg-light">
+    //             <ul class="list-group pt-5 pb-5 pl-2 pr-2">
+    //               <li class="list-group-item">ID: ${newEngineer.getid()}</li>
+    //               <li class="list-group-item">Email: ${newEngineer.getemail()}</li>
+    //               <li class="list-group-item">Office Number: ${newEngineer.getGitHub()}</li>
+    //             </ul>
+    //           </div>
+    //         </div>
+    //       </div>
+    //     </div>
+    //     `
+
+
+    // const newStudent = new Student(data.student_name, data.student_id, data.student_email, data.student_school)
+
+      //   `
+      // <div class="container pt-5">
+      //     <div class="row">
+      //       <div class="card shadow" style="width: 18rem">
+      //         <div class="card-header bg-primary">
+      //           <h2 class="card-title text-white">${newIntern.getName()}</h2>
+      //           <h3 class="card-subtitle mb-2 text-white"><i class="fa-solid fa-glasses fa-sm is-white" aria-hidden="true"></i>${employees.role}</h3>
+      //         </div>
+      //         <div class="card-body bg-light">
+      //           <ul class="list-group pt-5 pb-5 pl-2 pr-2">
+      //             <li class="list-group-item">ID: ${newIntern.getid()}</li>
+      //             <li class="list-group-item">Email: ${newIntern.getemail()}</li>
+      //             <li class="list-group-item">Office Number: ${newIntern.getSchool()}</li>
+      //           </ul>
+      //         </div>
+      //       </div>
+      //     </div>
+      //   </div>
+      //   `
+
+  
+   function writeToFile(employees) {
     fs.writeFile('./newHTML.html', generateHTML(employees), err => {
       if (err) throw new Error(err);
+      console.log("succesfully written to html")
     });
     
+   }
+  // writeToFile()
   
- 
-  
-  module.exports = generateHTML;
+  module.exports = writeToFile;
