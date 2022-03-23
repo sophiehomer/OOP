@@ -2,6 +2,10 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const writeToFile = require("./HTML-template");
 const employees = [];
+const Manager = require("../lib/Manager");
+const Intern = require("../lib/Intern");
+const Engineer = require("../lib/Engineer")
+
 /* ---------------------------- Manager Questions --------------------------- */
 function managerPrompt() {
   return inquirer.prompt([
@@ -78,17 +82,13 @@ function prompt() {
       internPrompt();
     }
     if (answers.newEmployee === "No") {
-      console.log(employees)
       writeToFile(employees);
    
   }})
-  .catch(() => {
-    console.log("error!!!");
-  });
 }
 
 managerPrompt().then((manager) => {
-  employees.push(manager);
+  employees.push(new Manager(manager.name, manager.id, manager.email, manager.officeNumber));
   prompt()
 
 });
@@ -149,8 +149,8 @@ function engineerPrompt() {
       },
     },
   ])
-  .then((engineer) => {
-    employees.push(engineer);
+  .then(({ name, id, email, github }) => {
+    employees.push(new Engineer(name, id, email, github));
    prompt()
   });
 }
@@ -212,8 +212,8 @@ function internPrompt() {
       },
     },
   ])
-  .then((intern) => {
-    employees.push(intern);
+  .then(({ name, id, email, school }) => {
+    employees.push(new Intern(name, id, email, school));
     prompt()
   });
 }
