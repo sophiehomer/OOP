@@ -43,7 +43,7 @@ const generateHTML = (data) => {
 };
 
 const generateCard = (employees) => {
-  console.log("generate Card: ", employees)
+// console.log("generate Card: ", employees)
  let card = "";
  for (let i = 0; i < employees.length; i++) {
  card+= `
@@ -58,7 +58,7 @@ const generateCard = (employees) => {
                 <ul class="list-group pt-5 pb-5 pl-2 pr-2">
                   <li class="list-group-item">ID: ${employees[i].id}</li>
                   <li class="list-group-item">Email: ${employees[i].email}</li>
-                  <li class="list-group-item">Office Number: ${employees[i].officeNumber || employees[i].github || employees[i].school}</li>
+                  <li class="list-group-item"> ${lastPrompt(employees, i)}</li> ${employees[i].officeNumber || employees[i].github || employees[i].school}</li>
                 </ul>
               </div>
             </div>
@@ -69,12 +69,28 @@ const generateCard = (employees) => {
   return card;
 };
 
+/* ------------------------------ Write To File ----------------------------- */
 function writeToFile(employees) {
   fs.writeFile("./newHTML.html", generateHTML(employees), (err) => {
     if (err) throw new Error(err);
     console.log("succesfully written to html");
   });
 }
-// writeToFile()
+
+
+/* -------------------------- Last Prompt Function -------------------------- */
+function lastPrompt(employees, i) {
+  if (employees[i].getRole() === "Manager") {
+  return `Office Number:`
+  }
+
+  if (employees[i].getRole() === "Engineer") {
+    return `Github:`
+  }
+
+  if (employees[i].getRole() === "Intern") {
+    return `School:`
+  }
+}
 
 module.exports = writeToFile;
