@@ -38,45 +38,51 @@ const generateHTML = (data) => {
           integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
           crossorigin="anonymous"
         ></script>
+        <script src="https://kit.fontawesome.com/c502137733.js"></script>
       </body>
     </html>`;
 };
 
 const generateCard = (employees) => {
-// console.log("generate Card: ", employees)
  let card = "";
  for (let i = 0; i < employees.length; i++) {
  card+= `
       <div class="container pt-5">
-          <div class="row">
+          <div class="row justify-content-center">
             <div class="card shadow" style="width: 18rem">
               <div class="card-header bg-primary">
                 <h2 class="card-title text-white">${employees[i].name}</h2>
-                <h3 class="card-subtitle mb-2 text-white"><i class="fa-solid fa-glasses fa-sm is-white" aria-hidden="true"></i>${employees[i].getRole()}</h3>
+               <h3 class="card-subtitle mb-2 text-white"> ${employeeIcons(employees, i)} ${employees[i].getRole()}</h3>
               </div>
               <div class="card-body bg-light">
                 <ul class="list-group pt-5 pb-5 pl-2 pr-2">
                   <li class="list-group-item">ID: ${employees[i].id}</li>
                   <li class="list-group-item">Email: ${employees[i].email}</li>
-                  <li class="list-group-item"> ${lastPrompt(employees, i)}</li> ${employees[i].officeNumber || employees[i].github || employees[i].school}</li>
+                  <li class="list-group-item">${lastPrompt(employees, i)} ${employees[i].officeNumber || employees[i].github || employees[i].school}</li>
                 </ul>
               </div>
             </div>
-          </div>
+            </div>
         </div>
         `;
  }
   return card;
 };
 
-/* ------------------------------ Write To File ----------------------------- */
-function writeToFile(employees) {
-  fs.writeFile("./newHTML.html", generateHTML(employees), (err) => {
-    if (err) throw new Error(err);
-    console.log("succesfully written to html");
-  });
+/* ------------------------- Employee Icons Function ------------------------ */
+function employeeIcons(employees, i) {
+  if (employees[i].getRole() === "Manager") {
+    return `<i class="fa-solid fa-mug-saucer"></i>`
+    }
+  
+    if (employees[i].getRole() === "Engineer") {
+      return `<i class="fa-solid fa-glasses"></i>`
+    }
+  
+    if (employees[i].getRole() === "Intern") {
+      return `<i class="fa-solid fa-graduation-cap"></i>`
+    }
 }
-
 
 /* -------------------------- Last Prompt Function -------------------------- */
 function lastPrompt(employees, i) {
@@ -92,5 +98,15 @@ function lastPrompt(employees, i) {
     return `School:`
   }
 }
+
+
+/* ------------------------------ Write To File ----------------------------- */
+function writeToFile(employees) {
+  fs.writeFile("./newHTML.html", generateHTML(employees), (err) => {
+    if (err) throw new Error(err);
+    console.log("succesfully written to html");
+  });
+}
+
 
 module.exports = writeToFile;
